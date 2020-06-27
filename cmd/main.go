@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	choose_your_own_adventure "github.com/IvanSharovarov/choose-your-own-adventure"
@@ -18,9 +17,8 @@ func main() {
 		panic(err)
 	}
 
-	d := json.NewDecoder(f)
-	var story choose_your_own_adventure.Story
-	if err := d.Decode(&story); err != nil {
+	story, err := choose_your_own_adventure.JsonStory(f)
+	if err != nil {
 		panic(err)
 	}
 	fmt.Printf("%+v.\n", story)
